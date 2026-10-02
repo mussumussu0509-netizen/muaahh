@@ -1,0 +1,55 @@
+:root{--bg1:#fff0f5;--bg2:#ffd0e3;--ink:#5a2a3f;--soft:#9b5d77;--card:rgba(255,255,255,.8);--pink:#ff4d88;--glow:rgba(255,77,136,.35);--paper:#fffaf3;box-sizing:border-box}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#2a1020;--bg2:#4a1a38;--ink:#ffe3ee;--soft:#e8a9c2;--card:rgba(255,255,255,.1);--paper:#3b1a2e}}
+:root[data-theme="dark"]{--bg1:#2a1020;--bg2:#4a1a38;--ink:#ffe3ee;--soft:#e8a9c2;--card:rgba(255,255,255,.1);--paper:#3b1a2e}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{font-family:'Quicksand',system-ui,sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2));background-color:var(--bg1);overflow:hidden;text-align:center}
+.s,h1,h2{font-family:'Dancing Script','Segoe Script',cursive;font-weight:700}
+canvas#bg{position:fixed;inset:0;z-index:1;pointer-events:none}
+.hint{color:var(--soft)}.tiny{font-size:.9rem}
+
+/* two halves */
+.wrap{position:fixed;inset:0;z-index:2;display:grid;grid-template-columns:1fr 1fr}
+.side{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 16px) 18px calc(env(safe-area-inset-bottom,0px) + 16px);min-height:0}
+.chars{background:rgba(255,255,255,.35);border-right:3px dashed rgba(255,77,136,.35)}
+@media (prefers-color-scheme:dark){.chars{background:rgba(255,255,255,.05)}}
+#duo{width:min(440px,92%);height:auto;max-height:55vh;overflow:visible}
+.speech{background:var(--card);backdrop-filter:blur(8px);padding:12px 20px;border-radius:22px;font-size:1.5rem;box-shadow:0 8px 22px var(--glow);margin-bottom:14px;max-width:340px;transition:transform .3s}
+.speech.pop{animation:pop .4s}
+@keyframes pop{50%{transform:scale(1.1)}}
+@media (max-width:760px){.wrap{grid-template-columns:1fr;grid-template-rows:42% 58%}.chars{border-right:0;border-bottom:3px dashed rgba(255,77,136,.35)}#duo{max-height:26vh}.speech{font-size:1.2rem;padding:8px 14px;margin-bottom:6px}}
+
+/* characters animation */
+.bob{animation:bob 2.2s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.eye{fill:#5a2a3f;transform-box:fill-box;transform-origin:center;animation:blink 4s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.floaty{animation:fl 2s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-12px) scale(1.2)}}
+.m-sad,.m-open,.brow{display:none}
+body.wrong .m-smile{display:none}body.wrong .m-sad{display:block}body.wrong .brow{display:block}
+body.wrong #duo{animation:shake .5s}
+body.ok .m-smile{display:none}body.ok .m-open{display:block}
+
+/* lock */
+.lock h1{font-size:clamp(2rem,6vw,2.8rem);color:var(--pink);margin:.1em 0;text-shadow:0 4px 20px var(--glow);line-height:1.1}
+.lockicon{font-size:3.4rem}
+.lockicon.shake{animation:shake .5s}.lockicon.open{animation:pop .6s}
+@keyframes shake{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.dots{display:flex;gap:14px;margin:8px 0}
+.dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--pink);transition:all .2s}
+.dots i.f{background:var(--pink);transform:scale(1.15)}
+.msg{min-height:2.6em;color:#d4366b;font-size:1.35rem;margin:4px 0;max-width:320px;line-height:1.2}
+.pad{display:grid;grid-template-columns:repeat(3,72px);gap:12px;justify-content:center}
+.pad button{height:62px;border-radius:50%;border:0;font:700 1.5rem 'Quicksand',sans-serif;color:var(--ink);background:var(--card);backdrop-filter:blur(8px);box-shadow:0 6px 16px var(--glow);cursor:pointer;transition:transform .15s}
+.pad button:active{transform:scale(.88);background:var(--pink);color:#fff}
+@media (max-width:760px){.pad{grid-template-columns:repeat(3,64px);gap:8px}.pad button{height:50px;font-size:1.3rem}.lockicon{font-size:2.4rem}.lock h1{font-size:1.9rem}.msg{min-height:2.2em;font-size:1.15rem}}
+
+/* scenes */
+.sc{position:fixed;inset:0;z-index:5;overflow-y:auto;display:flex;padding:calc(env(safe-area-inset-top,0px) + 24px) 20px calc(env(safe-area-inset-bottom,0px) + 28px);opacity:0;visibility:hidden;transition:opacity 1s,visibility 1s;background:linear-gradient(160deg,var(--bg1),var(--bg2))}
+.sc.on{opacity:1;visibility:visible}
+.in{margin:auto;width:100%;max-width:560px}
+.chars.small{background:none;border:0}.chars.small svg{width:min(320px,80%);height:auto}
+.big{font-size:clamp(2.6rem,12vw,4.4rem);color:var(--pink);margin:.2em 0;text-shadow:0 4px 24px var(--glow);line-height:1.1}
+#unlocked button{font:600 1.15rem 'Quicksand',sans-serif;border:0;border-radius:40px;padding:14px 34px;margin-top:24px;cursor:pointer;background:linear-gradient(135deg,#ff7aa5,#ff2d75);color:#fff;box-shadow:0 8px 22px var(--glow);animation:pop 1.6s infinite}
+.paper{background:var(--paper);background-image:repeating-linear-gradient(transparent 0 33px,rgba(255,77,136,.16) 33px 34px);border-radius:6px;padding:28px 24px;text-align:left;line-height:34px;font-size:1.05rem;box-shadow:0 14px 44px var(--glow);white-space:pre-wrap;min-height:60vh;position:relative;cursor:pointer}
+.paper:before{content:"💌";position:absolute;right:14px;top:8px;font-size:1.6rem}
