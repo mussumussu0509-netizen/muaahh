@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Only for my boyfriend 🔒</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<canvas id="bg"></canvas>
+<audio id="bgm" loop preload="auto" src="song.mp3"></audio>
+<button id="music" aria-label="music on/off">🔇</button>
+
+<!-- LOCK SCREEN: left/top = characters, right/bottom = password lock -->
+<main class="wrap" id="lockscreen">
+  <section class="side chars" id="chars">
+    <div class="speech s" id="speech">psst… do you know the secret code? 🤫</div>
+    <svg id="duo" viewBox="0 0 360 270" xmlns="http://www.w3.org/2000/svg">
+      <!-- BEAR -->
+      <g class="bob" style="animation-delay:0s">
+        <ellipse cx="105" cy="228" rx="52" ry="40" fill="#e3a97c"/>
+        <ellipse cx="105" cy="236" rx="30" ry="26" fill="#f7dcc0"/>
+        <circle cx="62" cy="108" r="22" fill="#e3a97c"/><circle cx="62" cy="108" r="12" fill="#f5b5c4"/>
+        <circle cx="148" cy="108" r="22" fill="#e3a97c"/><circle cx="148" cy="108" r="12" fill="#f5b5c4"/>
+        <circle cx="105" cy="148" r="58" fill="#e8b48a"/>
+        <ellipse cx="105" cy="168" rx="26" ry="20" fill="#f7dcc0"/>
+        <circle cx="82" cy="140" r="6" class="eye"/><circle cx="128" cy="140" r="6" class="eye"/>
+        <ellipse cx="105" cy="158" rx="7" ry="5" fill="#5a2a3f"/>
+        <circle cx="68" cy="158" r="9" fill="#ff9db8" opacity=".7"/><circle cx="142" cy="158" r="9" fill="#ff9db8" opacity=".7"/>
+        <path class="m-smile" d="M93 170 Q105 182 117 170" stroke="#5a2a3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path class="m-sad" d="M93 178 Q105 166 117 178" stroke="#5a2a3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path class="m-open" d="M90 168 Q105 196 120 168 Z" fill="#c2415f"/>
+        <path class="brow" d="M70 124 L92 132 M140 124 L118 132" stroke="#5a2a3f" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <!-- BUNNY -->
+      <g class="bob" style="animation-delay:.5s">
+        <ellipse cx="258" cy="228" rx="50" ry="40" fill="#fff"/>
+        <ellipse cx="258" cy="236" rx="28" ry="26" fill="#ffe6ee"/>
+        <ellipse cx="232" cy="68" rx="15" ry="46" fill="#fff"/><ellipse cx="232" cy="72" rx="7" ry="32" fill="#ffb3c8"/>
+        <ellipse cx="284" cy="68" rx="15" ry="46" fill="#fff"/><ellipse cx="284" cy="72" rx="7" ry="32" fill="#ffb3c8"/>
+        <circle cx="258" cy="148" r="56" fill="#fff" stroke="#ffd1df" stroke-width="3"/>
+        <circle cx="236" cy="140" r="6" class="eye"/><circle cx="282" cy="140" r="6" class="eye"/>
+        <path d="M251 155 L265 155 L258 163 Z" fill="#ff7aa5"/>
+        <circle cx="222" cy="158" r="9" fill="#ff9db8" opacity=".7"/><circle cx="294" cy="158" r="9" fill="#ff9db8" opacity=".7"/>
+        <path class="m-smile" d="M247 168 Q258 180 269 168" stroke="#5a2a3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path class="m-sad" d="M247 176 Q258 164 269 176" stroke="#5a2a3f" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path class="m-open" d="M244 166 Q258 194 272 166 Z" fill="#c2415f"/>
+        <path class="brow" d="M224 124 L246 132 M292 124 L270 132" stroke="#5a2a3f" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <text x="168" y="70" font-size="34" class="floaty">💗</text>
+    </svg>
+  </section>
+
+  <section class="side lock">
+    <div class="lockicon" id="lockicon">🔒</div>
+    <h1 class="s">Only for my boyfriend</h1>
+    <p class="hint">enter the secret code 💕</p>
+    <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+    <p class="msg s" id="msg"></p>
+    <div class="pad" id="pad"></div>
+  </section>
+</main>
+
+<!-- UNLOCKED SCREEN -->
+<div class="sc" id="unlocked">
+  <div class="in">
+    <div class="chars small" id="chars2"></div>
+    <h2 class="s big">Happy Boyfriend's Day 💖</h2>
+    <p class="s hint" style="font-size:1.6rem;margin:0">you got it right, my love 🥹</p>
+    <button id="openLetter">💌 Open your letter</button>
+  </div>
+</div>
+
+<!-- LETTER -->
+<div class="sc" id="letterscreen">
+  <div class="in" style="max-width:640px">
+    <div class="paper" id="letter"></div>
+    <p class="hint tiny">tap the letter to show it all</p>
+  </div>
+</div>
+<script src="script.js"></script>
+</body></html>
